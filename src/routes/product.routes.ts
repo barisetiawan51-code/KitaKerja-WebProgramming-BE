@@ -11,10 +11,10 @@ import { authenticate } from "../middleware/auth.middleware";
 
 const router = Router();
 
-router.post("/", authenticate, upload.single("imageUrl"), createProduct);
+router.post("/", authenticate, upload.single("image"), createProduct);
 router.get("/", getProducts);
 router.get("/:id", getProductById);
-router.put("/:id", authenticate, upload.single("imageUrl"), updateProduct);
+router.put("/:id", authenticate, upload.single("image"), updateProduct);
 router.delete("/:id", authenticate, deleteProduct);
 
 export default router;
