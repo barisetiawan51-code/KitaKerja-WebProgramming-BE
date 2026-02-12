@@ -22,17 +22,8 @@ const fileFilter = (
   file: Express.Multer.File,
   cb: multer.FileFilterCallback,
 ) => {
-  const fileTypes = /jpeg|jpg|png|gif|svg/;
-  const extName = fileTypes.test(path.extname(file.originalname).toLowerCase());
-  const mimeType =
-    fileTypes.test(file.mimetype) ||
-    file.mimetype === "image/svg+xml" ||
-    file.mimetype === "text/xml" ||
-    file.mimetype === "application/octet-stream";
-
-  console.log("Menerima file: ${file.mimetype} | Mimetype: ${file.mimetype}");
-
-  if (extName && mimeType) {
+  if (file.mimetype.startsWith("image/")) {
+    console.log("mimetype", file.mimetype);
     cb(null, true);
   } else {
     cb(new Error("Only images are allowed"));
